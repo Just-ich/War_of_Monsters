@@ -1,34 +1,25 @@
 package com.company;
 
 
-import java.security.SecureRandom;
-import java.util.Scanner;
-
 public class Knight {                    // Герой (рыцарь)
     public int money = 50;
     public int hp = 100;
     public int force = 15;
     public int energy = 85;
 
-    Scanner console = new Scanner(System.in);
-    SecureRandom random = new SecureRandom();
 
 
-
-
-    Knight(int money, int hp, int force, int energy){
+    public Knight(int money, int hp, int force, int energy){
         this.money=money;
         this.hp=hp;
         this.force=force;
         this.energy=energy;
     }
 
+
     public Knight() {
 
     }
-
-
-
     @Override
     public String toString() {
         return "Money: " + money +
@@ -37,7 +28,6 @@ public class Knight {                    // Герой (рыцарь)
                 "\nEnergy: " + energy;
 
     }
-
 
 }
 

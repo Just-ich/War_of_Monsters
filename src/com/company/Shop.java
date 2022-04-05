@@ -1,10 +1,13 @@
 package com.company;
 
-public class Shop extends Knight {           // Магазин
+import java.util.Scanner;
 
+public class Shop {           // Магазин
+    Scanner console = new Scanner(System.in);
+    Knight knight =new Knight();
     public void shop() {
-        if (energy >= 5) {
-            energy -= 5;
+        if (knight.energy >= 5) {
+            knight.energy -= 5;
             System.out.println("Добро пожаловать в магазин! " +
                     "\n Что вы хотете купить?" +
                     "\n 1 - Кинжал (15 монет, +5 к силе) " +
@@ -15,36 +18,36 @@ public class Shop extends Knight {           // Магазин
                     "\n 6 - Выйти из магазина ");
 
             int predmet = console.nextInt();
-            if (money >= 15) {
+            if (knight.money >= 15) {
                 switch (predmet) {
 
                     case 1:
-                        money -= 15;
-                        force += 5;
+                        knight.money -= 15;
+                        knight.force += 5;
                         System.out.println("Вы купили Кинжал");
                         break;
                     case 2:
-                        money -= 20;
-                        force += 10;
+                        knight.money -= 20;
+                        knight.force += 10;
                         System.out.println("Вы купили Кнут");
                         break;
                     case 3:
-                        money -= 25;
-                        force += 15;
+                        knight.money -= 25;
+                        knight.force += 15;
                         System.out.println("Вы купили Мечь");
                         break;
                     case 4:
-                        money -= 36;
-                        force += 10;
-                        energy -= 10;
-                        hp += 5;
+                        knight.money -= 36;
+                        knight.force += 10;
+                        knight.energy -= 10;
+                        knight.hp += 5;
                         System.out.println("Вы купил зелье из коры дуба");
                         break;
                     case 5:
-                        money -= 26;
-                        force += 5;
-                        energy += 10;
-                        hp += 10;
+                        knight.money -= 26;
+                        knight.force += 5;
+                        knight.energy += 10;
+                        knight.hp += 10;
                         System.out.println("Вы купили зелье из трав");
                         break;
                     case 6:
@@ -56,9 +59,5 @@ public class Shop extends Knight {           // Магазин
         } else {
             System.out.println("У вас недостаточно энергии!");
         }
-
-
     }
-
-
 }
