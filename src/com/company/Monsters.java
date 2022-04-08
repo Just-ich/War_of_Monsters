@@ -3,12 +3,10 @@ package com.company;
 public class Monsters {           // Сражение с монстрами и выбор их уровня
 
     int forceMonster;
-    int nagradaMonster;
     String nameMonster;
 
-    public Monsters(int forceMonster, int nagradaMonster, String nameMonster) {
+    public Monsters(int forceMonster,  String nameMonster) {
         this.forceMonster = forceMonster;
-        this.nagradaMonster = nagradaMonster;
         this.nameMonster = nameMonster;
 
     }

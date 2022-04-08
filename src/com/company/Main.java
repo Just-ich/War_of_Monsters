@@ -10,8 +10,8 @@ public class Main {
     public static SecureRandom random = new SecureRandom();
     //Монстры
     public static Monsters easyMonsters=new Monsters();
-    public static Monsters midleMonsters=new Monsters(0,0,"Средний");
-    public static Monsters strongMonsters=new Monsters(0,0,"Тяжёлый");
+    public static Monsters midleMonsters=new Monsters();
+    public static Monsters strongMonsters=new Monsters();
     public static Monsters batle=new Monsters();
 
     //Магазин
