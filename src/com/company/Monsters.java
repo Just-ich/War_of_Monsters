@@ -1,108 +1,42 @@
 package com.company;
 
-import java.security.SecureRandom;
-
 public class Monsters {           // Сражение с монстрами и выбор их уровня
 
-    public int forceMonster;
+    int forceMonster;
+    int nagradaMonster;
+    String nameMonster;
 
+    public Monsters(int forceMonster, int nagradaMonster, String nameMonster) {
+        this.forceMonster = forceMonster;
+        this.nagradaMonster = nagradaMonster;
+        this.nameMonster = nameMonster;
 
-
-    SecureRandom random = new SecureRandom();
-    public Knight knight =new Knight(50, 100, 15, 85);
-
-    // Лёгкий уровень монстра; отнимает 7 энергии ;
-    // при победе отнимает 3 hp и добавляет: 7 монет и +2 к сила
-    // при поражении отнимает 8 hp и отнимает: 4 монеты и -1 к силе
-    public void warEasyMonsters() {
-        if (knight.energy >= 7) {
-            knight.energy -= 7;
-            forceMonster = random.nextInt(11);
-
-            System.out.println("Сила монстра: " + forceMonster + "\nВаша сила: " + knight.force);
-            if (knight.force > forceMonster) {
-                knight.hp -= 3;
-                knight.money += 7;
-                knight.force += 2;
-                System.out.println("Вы победили монстра\n");
-
-            } else if (knight.force < forceMonster) {
-                knight.hp -= 8;
-                knight.money -= 4;
-                knight.force -= 1;
-                System.out.println("Вы проиграли");
-            } else if (knight.energy < 7) {
-                System.out.println("У вас недостаточно энергии!");
-            }
-        }
     }
 
 
-    // Средний уровень монстра; отнимает 9 энергии ;
-    // при победе отнимает 5 hp и добавляет: 9 монет и +3 к силе
-    // при поражении отнимает 10 hp и отнимает: 6 монеты и -2 к силе
+    public Monsters() {
 
-    public void warMidleMonsters() {
-        if (knight.energy >= 9) {
-            knight.energy -= 9;
-            forceMonster = random.nextInt(11) + 10;
-
-            System.out.println("Сила монстра: " + forceMonster + "\nВаша сила: " + knight.force);
-            if (knight.force > forceMonster) {
-                knight.hp -= 5;
-                knight.money += 9;
-                knight.force += 3;
-                System.out.println("Вы победили монстра\n");
-
-            } else if (knight.force < forceMonster) {
-                knight.hp -= 10;
-                knight.money -= 6;
-                knight.force -= 2;
-                System.out.println("Вы проиграли");
-            } else if (knight.energy < 9) {
-                System.out.println("У вас недостаточно энергии!");
-            }
-        }
     }
 
+    @Override
+    public String toString() {
+        return "Выберите уровень монстра\n" +
+                "\n 1 - Легкий --- Cила монстра 1-10;\n" +
+                "     За участие в драке отнимает 7 энергии;\n" +
+                "     при победе отнимает 3 hp и добавляет: 7 монет и 2 к сила;\n" +
+                "     при поражении отнимает 8 hp и отнимает: 4 монеты и 1 к силе.\n" +
+                "\n 2 - Средний --- Cила монстра 11-20;\n" +
+                "     За участие в драке отнимает 9 энергии;\n" +
+                "     при победе отнимает 5 hp и добавляет: 9 монет и 3 к сила;\n" +
+                "     при поражении отнимает 10 hp и отнимает: 6 монеты и 2 к силе.\n" +
+                "\n 3 - Тяжёлый --- Cила монстра 21-40;\n" +
+                "     За участие в драке отнимает 11 энергии;\n" +
+                "     при победе отнимает 7 hp и добавляет: 11 монет и 4 к сила;\n" +
+                "     при поражении отнимает 12 hp и отнимает: 8 монеты и 3 к силе.\n" +
+                "\n 4 - Отказаться от сражения.";
 
-    // Тяжёлый уровень монстра; отнимает 11 энергии ;
-    // при победе отнимает 7 hp и добавляет: 11 монет и +4 к силе
-    // при поражении отнимает 12 hp и отнимает: 8 монеты и -3 к силе
-    public void warStrongMonsters() {
-        if (knight.energy >= 11) {
-            knight.energy -= 11;
-            forceMonster = random.nextInt(21) + 20;
-
-            System.out.println("Сила монстра: " + forceMonster + "\nВаша сила: " + knight.force);
-            if (knight.force > forceMonster) {
-                knight.hp -= 7;
-                knight.money += 11;
-                knight.force += 4;
-                System.out.println("Вы победили монстра\n");
-
-            } else if (knight.force < forceMonster) {
-                knight.hp -= 12;
-                knight.money -= 8;
-                knight.force -= 3;
-                System.out.println("Вы проиграли");
-            } else if (knight.energy < 11) {
-                System.out.println("У вас недостаточно энергии!");
-            }
-        }
     }
-
-
-
-
-
-
-
-
-
-
-
-
+}
 //
 //    // Профи уровень монстра; отнимает 13 энергии ;
 //    // при победе отнимает 9 hp и добавляет: 13 монет и +5 к силе
@@ -155,5 +89,3 @@ public class Monsters {           // Сражение с монстрами и �
 //            }
 //        }
 //    }
-
-}
