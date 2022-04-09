@@ -4,14 +4,11 @@ import java.security.SecureRandom;
 import java.util.Scanner;
 
 public class GameService {
-    public static Knight knight = new Knight(50, 100, 15, 85,1);
+
     public static Scanner console = new Scanner(System.in);
     public static SecureRandom random = new SecureRandom();
     public static Hero hero =new Hero(50,100,15,85);
-    //Монстры
-    public static Monsters easyMonsters=new Monsters();
-    public static Monsters midleMonsters=new Monsters();
-    public static Monsters strongMonsters=new Monsters();
+    //Монстр
     public static Monsters batle=new Monsters();
 
     //Магазин
@@ -25,9 +22,7 @@ public class GameService {
     public void igra(){
         while (hero.getEnergy() > 0 && hero.getMoney() > 0 && hero.getHp() > 0 && hero.getForce() >0) {
             System.out.println("\n############################################");
-            //System.out.println(hero.getMoney());
-           // System.out.println(knight.getMoney());
-            System.out.println();
+            System.out.println(hero);
             System.out.println("\nВыберите следующее действие: " +
                     "\n 1 - Сражаться с монстром(1-6 энергии) " +
                     "\n 2 - Просить милостыню(2 энергии)(1-20 монет) " +
@@ -49,21 +44,24 @@ public class GameService {
                             //Лёгкий уровень монстра; отнимает 7 энергии ;
                             // при победе отнимает 3 hp и добавляет: 7 монет и +2 к сила
                             // при поражении отнимает 8 hp и отнимает: 4 монеты и -1 к силе
-                            if (knight.getEnergy() >= 7) {
-                                knight.setEnergy(knight.getEnergy()-7);
-                                System.out.println("Сила монстра: " +easyMonsters.easyForceMonster + "\nВаша сила: " + knight.getForce());
-                                if (knight.getForce() > easyMonsters.easyForceMonster) {
-                                    knight.setHp(knight.getHp()-3);
-                                    knight.setMoney(knight.getMoney()+7);
-                                    knight.setForce(knight.getForce()+2);
+
+                            Monsters easyMonsters=new Monsters();
+                            if (hero.getEnergy() >= 7) {
+                                hero.setEnergy(hero.getEnergy()-7);
+                                easyMonsters.easyForceMonster=random.nextInt(11);
+                                System.out.println("Сила монстра: " +easyMonsters.easyForceMonster + "\nВаша сила: " + hero.getForce());
+                                if (hero.getForce() > easyMonsters.easyForceMonster) {
+                                    hero.setHp(hero.getHp()-3);
+                                    hero.setMoney(hero.getMoney()+7);
+                                    hero.setForce(hero.getForce()+2);
                                     System.out.println("Вы победили монстра\n");
 
-                                } else if (knight.getForce() < easyMonsters.easyForceMonster) {
-                                    knight.setHp(knight.getHp()-8);
-                                    knight.setMoney(knight.getMoney()-4);
-                                    knight.setForce(knight.getForce()-1);
+                                } else if (hero.getForce() < easyMonsters.easyForceMonster) {
+                                    hero.setHp(hero.getHp()-8);
+                                    hero.setMoney(hero.getMoney()-4);
+                                    hero.setForce(hero.getForce()-1);
                                     System.out.println("Вы проиграли");
-                                } else if (knight.getEnergy() < 7) {
+                                } else if (hero.getEnergy() < 7) {
                                     System.out.println("У вас недостаточно энергии!");
                                 }
                             }
@@ -72,21 +70,22 @@ public class GameService {
                             //Средний уровень монстра; отнимает 9 энергии ;
                             // при победе отнимает 5 hp и добавляет: 9 монет и +3 к силе
                             // при поражении отнимает 10 hp и отнимает: 6 монеты и -2 к силе
-                            if (knight.getEnergy() >= 9) {
-                                knight.setEnergy(knight.getEnergy()-9);
-                                System.out.println("Сила монстра: " + midleMonsters.midleForceMonster + "\nВаша сила: " + knight.getForce());
-                                if (knight.getForce() > midleMonsters.midleForceMonster) {
-                                    knight.setHp(knight.getHp()-5);
-                                    knight.setMoney(knight.getMoney()+9);
-                                    knight.setForce(knight.getForce()+3);
+                            Monsters midlMonsters =new Monsters();
+                            if (hero.getEnergy() >= 9) {
+                                hero.setEnergy(hero.getEnergy()-9);
+                                System.out.println("Сила монстра: " + midlMonsters.midlForceMonster + "\nВаша сила: " + hero.getForce());
+                                if (hero.getForce() > midlMonsters.midlForceMonster) {
+                                    hero.setHp(hero.getHp()-5);
+                                    hero.setMoney(hero.getMoney()+9);
+                                    hero.setForce(hero.getForce()+3);
                                     System.out.println("Вы победили монстра\n");
 
-                                } else if (knight.getForce() < midleMonsters.midleForceMonster) {
-                                    knight.setHp(knight.getHp()-10);
-                                    knight.setMoney(knight.getMoney()-6);
-                                    knight.setForce(knight.getForce()-2);
+                                } else if (hero.getForce() < midlMonsters.midlForceMonster) {
+                                    hero.setHp(hero.getHp()-10);
+                                    hero.setMoney(hero.getMoney()-6);
+                                    hero.setForce(hero.getForce()-2);
                                     System.out.println("Вы проиграли");
-                                } else if (knight.getEnergy() < 9) {
+                                } else if (hero.getEnergy() < 9) {
                                     System.out.println("У вас недостаточно энергии!");
                                 }
                             }
@@ -95,21 +94,22 @@ public class GameService {
                             // Тяжёлый уровень монстра; отнимает 11 энергии ;
                             // при победе отнимает 7 hp и добавляет: 11 монет и +4 к силе
                             // при поражении отнимает 12 hp и отнимает: 8 монеты и -3 к силе
-                            if (knight.getEnergy() >= 11) {
-                                knight.setEnergy(knight.getEnergy()-11);
-                                System.out.println("Сила монстра: " + strongMonsters.strongForceMonster + "\nВаша сила: " + knight.getForce());
-                                if (knight.getForce() > strongMonsters.strongForceMonster) {
-                                    knight.setHp(knight.getHp()-7);
-                                    knight.setMoney(knight.getMoney()+11);
-                                    knight.setForce(knight.getForce()+4);
+                            Monsters strongMonsters=new Monsters();
+                            if (hero.getEnergy() >= 11) {
+                                hero.setEnergy(hero.getEnergy()-11);
+                                System.out.println("Сила монстра: " + strongMonsters.strongForceMonster + "\nВаша сила: " + hero.getForce());
+                                if (hero.getForce() > strongMonsters.strongForceMonster) {
+                                    hero.setHp(hero.getHp()-7);
+                                    hero.setMoney(hero.getMoney()+11);
+                                    hero.setForce(hero.getForce()+4);
                                     System.out.println("Вы победили монстра\n");
 
-                                } else if (knight.getForce() < strongMonsters.strongForceMonster) {
-                                    knight.setHp(knight.getHp()-12);
-                                    knight.setMoney(knight.getMoney()-8);
-                                    knight.setForce(knight.getForce()-3);
+                                } else if (hero.getForce() < strongMonsters.strongForceMonster) {
+                                    hero.setHp(hero.getHp()-12);
+                                    hero.setMoney(hero.getMoney()-8);
+                                    hero.setForce(hero.getForce()-3);
                                     System.out.println("Вы проиграли");
-                                } else if (knight.getEnergy() < 11) {
+                                } else if (hero.getEnergy() < 11) {
                                     System.out.println("У вас недостаточно энергии!");
                                 }
                             }
@@ -124,9 +124,9 @@ public class GameService {
 
                 case 2: // просить милостыню
                     int milost = random.nextInt(21);
-                    if (knight.getEnergy() >= 2) {
-                        knight.setMoney(knight.getMoney()+milost);
-                        knight.setEnergy(knight.getEnergy()-2);
+                    if (hero.getEnergy() >= 2) {
+                        hero.setMoney(hero.getMoney()+milost);
+                        hero.setEnergy(hero.getEnergy()-2);
                         System.out.println("Вам пожертвовали: " + milost + " монет\n");
                     } else {
                         System.out.println("У вас недостаточно энергии!");
@@ -138,40 +138,40 @@ public class GameService {
 
 
                 case 3: // Магазин
-                    if (knight.getEnergy() >= 5) {
-                        knight.setEnergy(knight.getEnergy()-5);
+                    if (hero.getEnergy() >= 5) {
+                        hero.setEnergy(hero.getEnergy()-5);
                         System.out.println(shop);
                         int predmet = console.nextInt();
-                        if (knight.getMoney() >= 15) {
+                        if (hero.getMoney() >= 15) {
                             switch (predmet) {
 
                                 case 1:
-                                    knight.setMoney(knight.getMoney()-kinjal.priceTowara);
-                                    knight.setForce(knight.getForce()+kinjal.plusForce);
+                                    hero.setMoney(hero.getMoney()-kinjal.priceTowara);
+                                    hero.setForce(hero.getForce()+kinjal.plusForce);
                                     System.out.println("Вы купили Кинжал");
                                     break;
                                 case 2:
-                                    knight.setMoney(knight.getMoney()-knut.priceTowara);
-                                    knight.setForce(knight.getForce()+knut.plusForce);
+                                    hero.setMoney(hero.getMoney()-knut.priceTowara);
+                                    hero.setForce(hero.getForce()+knut.plusForce);
                                     System.out.println("Вы купили Кнут");
                                     break;
                                 case 3:
-                                    knight.setMoney(knight.getMoney()-mech.priceTowara);
-                                    knight.setForce(knight.getForce()+mech.plusForce);
+                                    hero.setMoney(hero.getMoney()-mech.priceTowara);
+                                    hero.setForce(hero.getForce()+mech.plusForce);
                                     System.out.println("Вы купили Мечь");
                                     break;
                                 case 4:
-                                    knight.setMoney(knight.getMoney()-zeljeDub.priceTowara);
-                                    knight.setForce(knight.getForce()+zeljeDub.plusForce);
-                                    knight.setEnergy(knight.getEnergy()-zeljeDub.minusEnergy);
-                                    knight.setHp(knight.getHp()+zeljeDub.plusHealth);
+                                    hero.setMoney(hero.getMoney()-zeljeDub.priceTowara);
+                                    hero.setForce(hero.getForce()+zeljeDub.plusForce);
+                                    hero.setEnergy(hero.getEnergy()-zeljeDub.minusEnergy);
+                                    hero.setHp(hero.getHp()+zeljeDub.plusHealth);
                                     System.out.println("Вы купил зелье из коры дуба");
                                     break;
                                 case 5:
-                                    knight.setMoney(knight.getMoney()-zeljeTrawi.priceTowara);
-                                    knight.setForce(knight.getForce()+zeljeTrawi.plusForce);
-                                    knight.setEnergy(knight.getEnergy()+zeljeTrawi.plusEnergy);
-                                    knight.setHp(knight.getHp()+zeljeTrawi.plusHealth);
+                                    hero.setMoney(hero.getMoney()-zeljeTrawi.priceTowara);
+                                    hero.setForce(hero.getForce()+zeljeTrawi.plusForce);
+                                    hero.setEnergy(hero.getEnergy()+zeljeTrawi.plusEnergy);
+                                    hero.setHp(hero.getHp()+zeljeTrawi.plusHealth);
                                     System.out.println("Вы купили зелье из трав");
                                     break;
                                 case 6:
@@ -185,8 +185,10 @@ public class GameService {
                     }
                     break;
                 case 4: // Выход из игры
-                    System.out.println("Вы закончили игру с:\n"+ knight.toString());
+                    System.out.println("Вы закончили игру с:\n"+ hero.toString());
                     return;
+                default:
+                    System.out.println("Выберите пункт меню!");
             }
         }
     }

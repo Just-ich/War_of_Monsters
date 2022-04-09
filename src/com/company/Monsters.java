@@ -5,28 +5,14 @@ import static com.company.GameService.random;
 public class Monsters {           // Сражение с монстрами и выбор их уровня
 
     int easyForceMonster= random.nextInt(11);
-    int midleForceMonster= random.nextInt(11) + 10;
+    int midlForceMonster= random.nextInt(11) + 10;
     int strongForceMonster= random.nextInt(21) + 20;
-    String nameMonster;
-
-    public Monsters(int easyForceMonster,int midleForceMonster, int strongForceMonster, String nameMonster) {
-
-        this.easyForceMonster=easyForceMonster;
-        this.midleForceMonster=midleForceMonster;
-        this.strongForceMonster=strongForceMonster;
-        this.nameMonster = nameMonster;
-
-    }
-
-
 
 
 
     public Monsters() {
 
     }
-
-
 
     @Override
     public String toString() {
