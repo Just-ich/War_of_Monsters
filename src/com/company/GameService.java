@@ -24,7 +24,7 @@ public class GameService {
             System.out.println("\n############################################");
             System.out.println(hero);
             System.out.println("\nВыберите следующее действие: " +
-                    "\n 1 - Сражаться с монстром(1-6 энергии) " +
+                    "\n 1 - Сражаться с монстром(7, 9, 11 энергии) " +
                     "\n 2 - Просить милостыню(2 энергии)(1-20 монет) " +
                     "\n 3 - Посетить магазин(5 энергии)" +
                     "\n 4 - Закончить игру");
@@ -48,15 +48,14 @@ public class GameService {
                             Monsters easyMonsters=new Monsters();
                             if (hero.getEnergy() >= 7) {
                                 hero.setEnergy(hero.getEnergy()-7);
-                                easyMonsters.easyForceMonster=random.nextInt(11);
-                                System.out.println("Сила монстра: " +easyMonsters.easyForceMonster + "\nВаша сила: " + hero.getForce());
-                                if (hero.getForce() > easyMonsters.easyForceMonster) {
+                                System.out.println("Сила монстра: " +easyMonsters.getEasyForceMonster() + "\nВаша сила: " + hero.getForce());
+                                if (hero.getForce() > easyMonsters.getEasyForceMonster()) {
                                     hero.setHp(hero.getHp()-3);
                                     hero.setMoney(hero.getMoney()+7);
                                     hero.setForce(hero.getForce()+2);
                                     System.out.println("Вы победили монстра\n");
 
-                                } else if (hero.getForce() < easyMonsters.easyForceMonster) {
+                                } else if (hero.getForce() < easyMonsters.getEasyForceMonster()) {
                                     hero.setHp(hero.getHp()-8);
                                     hero.setMoney(hero.getMoney()-4);
                                     hero.setForce(hero.getForce()-1);
@@ -73,14 +72,14 @@ public class GameService {
                             Monsters midlMonsters =new Monsters();
                             if (hero.getEnergy() >= 9) {
                                 hero.setEnergy(hero.getEnergy()-9);
-                                System.out.println("Сила монстра: " + midlMonsters.midlForceMonster + "\nВаша сила: " + hero.getForce());
-                                if (hero.getForce() > midlMonsters.midlForceMonster) {
+                                System.out.println("Сила монстра: " + midlMonsters.getMidlForceMonster() + "\nВаша сила: " + hero.getForce());
+                                if (hero.getForce() > midlMonsters.getMidlForceMonster()) {
                                     hero.setHp(hero.getHp()-5);
                                     hero.setMoney(hero.getMoney()+9);
                                     hero.setForce(hero.getForce()+3);
                                     System.out.println("Вы победили монстра\n");
 
-                                } else if (hero.getForce() < midlMonsters.midlForceMonster) {
+                                } else if (hero.getForce() < midlMonsters.getMidlForceMonster()) {
                                     hero.setHp(hero.getHp()-10);
                                     hero.setMoney(hero.getMoney()-6);
                                     hero.setForce(hero.getForce()-2);
@@ -97,14 +96,14 @@ public class GameService {
                             Monsters strongMonsters=new Monsters();
                             if (hero.getEnergy() >= 11) {
                                 hero.setEnergy(hero.getEnergy()-11);
-                                System.out.println("Сила монстра: " + strongMonsters.strongForceMonster + "\nВаша сила: " + hero.getForce());
-                                if (hero.getForce() > strongMonsters.strongForceMonster) {
+                                System.out.println("Сила монстра: " + strongMonsters.getStrongForceMonster() + "\nВаша сила: " + hero.getForce());
+                                if (hero.getForce() > strongMonsters.getStrongForceMonster()) {
                                     hero.setHp(hero.getHp()-7);
                                     hero.setMoney(hero.getMoney()+11);
                                     hero.setForce(hero.getForce()+4);
                                     System.out.println("Вы победили монстра\n");
 
-                                } else if (hero.getForce() < strongMonsters.strongForceMonster) {
+                                } else if (hero.getForce() < strongMonsters.getStrongForceMonster()) {
                                     hero.setHp(hero.getHp()-12);
                                     hero.setMoney(hero.getMoney()-8);
                                     hero.setForce(hero.getForce()-3);
