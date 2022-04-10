@@ -7,7 +7,7 @@ public class GameService {
 
     public static Scanner console = new Scanner(System.in);
     public static SecureRandom random = new SecureRandom();
-    public static Hero hero =new Hero(50,100,15,85);
+    public static Hero hero =null;
     //Монстр
     public static Monsters batle=new Monsters();
 
@@ -20,7 +20,36 @@ public class GameService {
     public static Shop shop=new Shop();
 
     public void igra(){
+
+        System.out.println("1 - Рыцарь----есть лошадь и она добавляе: +25 к энергии, +10 к силе, +5 к НР" +
+                         "\n2 - Маг----есть чары и они добавляют: +10 к энергии, +5 к силе, +15 к НР");
+
+
+        int wiborIgroka=console.nextInt();
+
+        if (wiborIgroka==1 ) {
+            System.out.println("Вы выбрали Рыцаря");
+            hero = new Knight(50, 100, 15, 85, "Барон");
+            Knight knight= (Knight) hero;
+            knight.horse();
+
+
+        }else {
+            System.out.println("Вы выбрали Мага");
+            hero = new Mag(50, 100, 15, 85,"Буст");
+            Mag mag=(Mag) hero;
+            mag.chari();
+        }
+
+
+
+
+        //Mag mag=(Mag) hero;   //приведение объекта класса Грой к объкту класса Маг
+
+
+
         while (hero.getEnergy() > 0 && hero.getMoney() > 0 && hero.getHp() > 0 && hero.getForce() >0) {
+
             System.out.println("\n############################################");
             System.out.println(hero);
             System.out.println("\nВыберите следующее действие: " +
@@ -53,6 +82,7 @@ public class GameService {
                                     hero.setHp(hero.getHp()-3);
                                     hero.setMoney(hero.getMoney()+7);
                                     hero.setForce(hero.getForce()+2);
+                                    hero.win();
                                     System.out.println("Вы победили монстра\n");
 
                                 } else if (hero.getForce() < easyMonsters.getEasyForceMonster()) {
@@ -122,15 +152,7 @@ public class GameService {
 
 
                 case 2: // просить милостыню
-                    int milost = random.nextInt(21);
-                    if (hero.getEnergy() >= 2) {
-                        hero.setMoney(hero.getMoney()+milost);
-                        hero.setEnergy(hero.getEnergy()-2);
-                        System.out.println("Вам пожертвовали: " + milost + " монет\n");
-                    } else {
-                        System.out.println("У вас недостаточно энергии!");
-
-                    }
+                    hero.prositMilost();
                    break;
 
 

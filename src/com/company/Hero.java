@@ -1,7 +1,7 @@
 package com.company;
 
 
-public class Hero {                    // Герой (рыцарь)
+public abstract class Hero implements MogetUdar, MogetPrigat {                    // Герой
     private int money = 50;
     private int hp = 100;
     private int force = 15;
@@ -16,9 +16,12 @@ public class Hero {                    // Герой (рыцарь)
         this.energy=energy;
     }
 
+
     public Hero() {
 
     }
+
+    public abstract void prositMilost();
 
     public int getMoney() {
         return money;
@@ -53,6 +56,7 @@ public class Hero {                    // Герой (рыцарь)
     }
 
 
+    public abstract void win();
     @Override
     public  String toString() {
         return "Money: " + money +
